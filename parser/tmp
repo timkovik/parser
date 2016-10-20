@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+
+
+$base = json_decode(file_get_contents(__dir__.'/base.json'), true);
+
+$n = 0;
+$json1 = file_get_contents(__dir__.'/nacenka_metr.json');
+echo "<form method='post'>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if($_POST){
+		$base[$name]['price'] = $_POST['price'.$n];
+		$base[$name]['nacenka'] = $_POST['nacenka'.$n];
+		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$n];
+		
+	
+	}
+	 // echo '"'.$name.'" : "500",<br>';
+	$nacenka_metr = json_decode($json1);
+	echo $name;
+	echo "<input type='text' name='price".$n."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$n."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$n."'value='".$base[$name]['nacenka_metr']."'><br>";
+	if($_POST){
+			
+			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
+			 
+			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $page->setValue('cena_za_list', $cena_metra);
+
+		
+
+		$base_json = json_encode($base);
+		file_put_contents(__dir__.'/base.json', $base_json);
+		echo "<h3>Сохранено</h3>";
+	}
+
+	$n++;
+	
+}
+echo "<input type='submit' value='сохранить'></form>";
+
+echo '<hr>';

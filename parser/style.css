@@ -1,0 +1,58 @@
+.main{
+display: inline;
+margin: 15px;
+border-radius: 20px;
+position: absolute;
+margin-left: -200px;
+width: 450px;
+float: left;
+padding: 20px;
+background: #E0E0DF;
+left: 50%;
+
+}
+.link{
+display: block;
+color: #000;
+text-decoration: none;
+padding: 5px;
+margin: 5px;
+}
+.link:hover{
+color:#fff;
+background: #dadada;
+}
+.link:active{
+color:red;
+}
+#result{
+	background: rgb(238, 238, 238);
+	padding: 10px;
+	margin: 10px;
+	overflow: scroll;
+}
+textarea{
+width: 400px;
+height: 60px;
+}
+#result img{
+margin:0 auto;
+}
+#hidden,
+#hidden_items,
+#images{
+	display: none;
+}
+input[type=text]{
+}
+#hlist input[type=text]{
+	width: 100px;
+}
+#loading{
+	position: fixed;
+  top: 0;
+  right: 0;
+  background: #dadada;
+  padding: 10px;
+  border-radius: 0 0 0 70px;	
+}

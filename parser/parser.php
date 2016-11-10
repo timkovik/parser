@@ -1,36 +1,40 @@
 
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 <?php
-echo '<a class="tab" href="#armaturaa1">Арматура А1</a>
-        <a class="tab" href="#armaturaa1">Арматура А3</a>
-        <a class="tab" href="#katanka">Катанка</a>
-        <a class="tab" href="#shveler">Швелер</a>
-        <a class="tab" href="#balka">Балка</a>
-        <a class="tab" href="#ugolok_ravn">Уголок равнополочный</a>
-        <a class="tab" href="#ugolok_neravn">Уголок неравнополочный</a>
-        <a class="tab" href="#kvadrat">Квадрат</a>
-        <a class="tab" href="#polosa">Полоса</a>
-        <a class="tab" href="#setka">Сетка</a>
-        <a class="tab" href="#truba_es">Труба Электросварная</a>
-        <a class="tab" href="#truba_vgp">Труба ВГП</a>
-        <a class="tab" href="#truba_vgp_oz">Труба ВГП оц</a>
-        <a class="tab" href="#provoloka">Проволока</a>
-        <a class="tab" href="#listhk">Лист х\к</a>
-        <a class="tab" href="#listgk">Лист г\к</a>
-        <a class="tab" href="#list_ocinkovanniy">Лист оцинкованные</a>
-        <a class="tab" href="#list-tolst">Лист толстый</a>
-										        <a class="tab" href="#truba_krug">Труба круглая</a>
-        <a class="tab" href="#krug">Круг стальной</a>
-        <a class="tab" href="#truba_prof">Труба профильная</a>
-        <a class="tab" href="#proflist_oz">Профлист Оц.</a>
-        <a class="tab" href="#truba_bessh">Труба бесшовная</a>
-        <a class="tab" href="#truba_electrosvar">Труба электросварная</a>
-        <a class="tab" href="#listr">Лист Рифленый</a>
+echo '<div class="menu">
+<a class="btn btn-info" href="#armaturaa1">Арматура А1</a>
+        <a class="btn btn-info" href="#armaturaa3">Арматура А3</a>
+        <a class="btn btn-info" href="#katanka">Катанка</a>
+        <a class="btn btn-info" href="#shveler">Швелер</a>
+        <a class="btn btn-info" href="#balka">Балка</a>
+        <a class="btn btn-info" href="#ugolok_ravn">Уголок равнополочный</a>
+        <a class="btn btn-info" href="#ugolok_neravn">Уголок неравнополочный</a>
+        <a class="btn btn-info" href="#kvadrat">Квадрат</a>
+        <a class="btn btn-info" href="#polosa">Полоса</a>
+        <a class="btn btn-info" href="#setka">Сетка</a>
+        <a class="btn btn-info" href="#truba_es">Труба Электросварная</a>
+        <a class="btn btn-info" href="#truba_vgp">Труба ВГП</a>
+        <a class="btn btn-info" href="#truba_vgp_oz">Труба ВГП оц</a>
+        <a class="btn btn-info" href="#provoloka">Проволока</a>
+        <a class="btn btn-info" href="#listhk">Лист х\к</a>
+        <a class="btn btn-info" href="#listgk">Лист г\к</a>
+        <a class="btn btn-info" href="#list_ocinkovanniy">Лист оцинкованные</a>
+        <a class="btn btn-info" href="#list-tolst">Лист толстый</a>
+		<a class="btn btn-info" href="#truba_krug">Труба круглая</a>
+        <a class="btn btn-info" href="#krug">Круг стальной</a>
+        <a class="btn btn-info" href="#truba_prof">Труба профильная</a>
+        <a class="btn btn-info" href="#proflist_oz">Профлист Оц.</a>
+        <a class="btn btn-info" href="#truba_bessh">Труба бесшовная</a>
+        <a class="btn btn-info" href="#truba_electrosvar">Труба электросварная</a>
+        <a class="btn btn-info" href="#listr">Лист Рифленый</a>
+		
 
 
 
+        </div>';
 
-        ';
+        echo "<form method='post' enctype='multipart/form-data'><input type='submit' class='btn btn-danger' value='Сохранить'>";
+
 echo "<div id='armaturaa1'>";
 echo '<b>Арматура А1</b>';
 
@@ -107,7 +111,6 @@ $base = json_decode(file_get_contents(__dir__.'/base.json'), true);
 
 $n = 0;
 
-echo "<form method='post'>";
 foreach ($objects as $key=>$value){
 
 	$page = $this->getPageById($value['attribute:id']);
@@ -129,7 +132,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -239,7 +242,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -358,7 +361,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -478,7 +481,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -502,6 +505,7 @@ echo "</div><div id='balka'>";
 /////////////Двутавр////////////
 echo '<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">';
 $text = file_get_contents( 'http://mc.ru/page.asp/metalloprokat/balka_2t');
+$text .= file_get_contents( 'http://mc.ru/page.asp/metalloprokat/balka_2t/PageN/2');
 $text = iconv('windows-1251', 'UTF-8',$text);
 $json = file_get_contents(__dir__.'/nacenka.json');
 $nacenka = json_decode($json);
@@ -570,7 +574,8 @@ for ($i=0; $i < count($ceni); $i++) {
 	$price[$out[$i]] = trim($ceni[$i]);
 	}
 
-	/////////Прайс катанка/////////////
+	/////////Прайс двутавр
+/////////////
 
 $page = $variables['full:page'];
 $objects = $this->macros('catalog', 'getObjectsList', array(null, 'balka_dvutavrovay', null, null, 2));
@@ -605,7 +610,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -619,10 +624,9 @@ foreach ($objects as $key=>$value){
 }
 If($_POST){echo "<h3>Сохранено</h3>";}
 
-echo	'<hr>';
-// var_dump($price);
+echo	'<hr> ===>>';
 
-// ?>
+?>
 <?php
 echo "</div><div id='ugolok_ravn'>";
 
@@ -722,18 +726,19 @@ foreach ($objects as $key=>$value){
 		$base[$name]['price'] = $_POST['price'.$t]; 
 		$base[$name]['nacenka'] = $_POST['nacenka'.$t]; 
 		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$t];
-		
 	
 	}
 	 // echo '"'.$name.'" : "500",<br>';
 	$nacenka_metr = json_decode($json1);
-	echo $name;
-	echo "<input type='text' name='price".$t."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$t."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$t."'value='".$base[$name]['nacenka_metr']."'><br>";
+	if($t < 125){
+		echo $name;
+		echo "<input type='text' name='price".$t."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$t."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$t."'value='".$base[$name]['nacenka_metr']."'><br>";
+	}
 	if($_POST){
-			
+
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -844,22 +849,27 @@ foreach ($objects as $key=>$value){
 	$name = str_replace("  ", " ", $name);
 	$name = trim($name);
     
-  if($_POST){
-		$base[$name]['price'] = $_POST['price'.$y]; 
-		$base[$name]['nacenka'] = $_POST['nacenka'.$y]; 
-		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$y];
+  if($_POST['price'.$y]){
+  		
+			
+
+			$base[$name]['price'] = $_POST['price'.$y]; 
+			$base[$name]['nacenka'] = $_POST['nacenka'.$y]; 
+			$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$y];
+
 		
-	
 	}
 	 // echo '"'.$name.'" : "500",<br>';
-	$nacenka_metr = json_decode($json1);
-	echo $name;
-	echo "<input type='text' name='price".$y."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$y."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$y."'value='".$base[$name]['nacenka_metr']."'><br>";
-	if($_POST){
-			
+	if($y > 180){
+		echo $name;
+		echo "<input type='text' name='price".$y."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$y."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$y."'value='".$base[$name]['nacenka_metr']."'><br>";
+	}
+	if($_POST['price'.$y]){
+		
+
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -973,6 +983,7 @@ foreach ($objects as $key=>$value){
 
     
   if($_POST){
+
 		$base[$name]['price'] = $_POST['price'.$u]; 
 		$base[$name]['nacenka'] = $_POST['nacenka'.$u]; 
 		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$u];
@@ -987,7 +998,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -1122,7 +1133,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -1272,8 +1283,8 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
-			 $page->setValue('cena_za_list', $cena_metra);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
+			 $page->setValue('cena_za_metr2', $cena_metra);
 
 		
 
@@ -1419,8 +1430,8 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
-			 $page->setValue('cena_za_list', $cena_metra);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
+			 $page->setValue('cena_za_metr2', $cena_metra);
 
 		
 
@@ -1564,8 +1575,8 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
-			 $page->setValue('cena_za_list', $cena_metra);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
+			 $page->setValue('cena_za_metr2', $cena_metra);
 
 		
 
@@ -1711,8 +1722,8 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
-			 $page->setValue('cena_za_list', $cena_metra);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
+			 $page->setValue('cena_za_metr2', $cena_metra);
 
 		
 
@@ -1817,7 +1828,7 @@ $page = $variables['full:page'];
 $objects = $this->macros('catalog', 'getObjectsList', array(null, 'provoloka', null, null, 2));
 $objects = $objects['lines']['nodes:item'];
 /////////Имя на сайте.../////////////
-$f = $d;
+$f1 = $d;
 foreach ($objects as $key=>$value){
 
   $page = $this->getPageById($value['attribute:id']);
@@ -1843,21 +1854,21 @@ foreach ($objects as $key=>$value){
 	// echo $name.' - '.$price[$name].'<br>';
 	
   if($_POST){
-		$base[$name]['price'] = $_POST['price'.$f]; 
-		$base[$name]['nacenka'] = $_POST['nacenka'.$f]; 
-		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$f];
+		$base[$name]['price'] = $_POST['price'.$f1]; 
+		$base[$name]['nacenka'] = $_POST['nacenka'.$f1]; 
+		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$f1];
 		
 	
 	}
 	 // echo '"'.$name.'" : "500",<br>';
 	$nacenka_metr = json_decode($json1);
 	echo $name;
-	echo "<input type='text' name='price".$f."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$f."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$f."'value='".$base[$name]['nacenka_metr']."'><br>";
+	echo "<input type='text' name='price".$f1."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$f1."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$f1."'value='".$base[$name]['nacenka_metr']."'><br>";
 	if($_POST){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -1866,7 +1877,7 @@ foreach ($objects as $key=>$value){
 		file_put_contents(__dir__.'/base.json', $base_json);
 	}
 
-	$f++;
+	$f1++;
 	
 }
 If($_POST){echo "<h3>Сохранено</h3>";}
@@ -1964,7 +1975,7 @@ $page = $variables['full:page'];
 $objects = $this->macros('catalog', 'getObjectsList', array(null, 'list-riflenyy-tsena-chechevitsa-romb-kupit-list-gk-riflennyy', null, null, 2));
 $objects = $objects['lines']['nodes:item'];
 /////////Имя на сайте.../////////////
-$g = $f;
+$g = $f1;
 foreach ($objects as $key=>$value){
 
   $page = $this->getPageById($value['attribute:id']);
@@ -2004,7 +2015,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -2148,7 +2159,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -2292,7 +2303,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -2437,7 +2448,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -2572,7 +2583,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -2711,8 +2722,8 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
-			 $page->setValue('cena_za_list', $cena_metra);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
+			 $page->setValue('cena_za_metr2', $cena_metra);
 
 		
 
@@ -2856,7 +2867,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -2985,6 +2996,7 @@ foreach ($objects as $key=>$value){
 	// var_dump($price);
   
   if($_POST){
+  	
 		$base[$name]['price'] = $_POST['price'.$c]; 
 		$base[$name]['nacenka'] = $_POST['nacenka'.$c]; 
 		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$c];
@@ -2994,12 +3006,17 @@ foreach ($objects as $key=>$value){
 	 // echo '"'.$name.'" : "500",<br>';
 	$nacenka_metr = json_decode($json1);
 	echo $name;
-	echo "<input type='text' name='price".$c."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$c."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$c."'value='".$base[$name]['nacenka_metr']."'><br>";
+	echo '<input type="text" name="price'. $c .'" value="'.$price[$name].'">наценка на тонну <input type="text" name="nacenka'.$c.'" value="'.$base[$name]['nacenka'].'"> наценка на метр <input type="text" name="nacenka_metr'.$c.'" value="'.$base[$name]['nacenka_metr'].'"><br>';
+
+
+
+
+
 	if($_POST){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -3099,7 +3116,7 @@ for ($i=0; $i < count($ceni); $i++) {
 	$price[$out[$i]] = trim($ceni[$i]);
 	}
 
-	/////////Прайс труба профильная/////////////
+	/////////Прайс профнастил/////////////
 
 $page = $variables['full:page'];
 $objects = $this->macros('catalog', 'getObjectsList', array(null, 'profnastil_krovelniy', null, null, 2));
@@ -3124,7 +3141,7 @@ foreach ($objects as $key=>$value){
 	// echo $name.' - '.$price[$name].'<br>';
 	// var_dump($price);
    
-  if($_POST){
+  if($_POST['price'.$v]){
 		$base[$name]['price'] = $_POST['price'.$v]; 
 		$base[$name]['nacenka'] = $_POST['nacenka'.$v]; 
 		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$v];
@@ -3135,11 +3152,11 @@ foreach ($objects as $key=>$value){
 	$nacenka_metr = json_decode($json1);
 	echo $name;
 	echo "<input type='text' name='price".$v."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$v."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$v."'value='".$base[$name]['nacenka_metr']."'><br>";
-	if($_POST){
+	if($_POST['price'.$v]){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -3242,7 +3259,7 @@ for ($i=0; $i < count($ceni); $i++) {
 	$price[$out[$i]] = trim($ceni[$i]);
 	}
 
-	/////////Прайс труба профильная/////////////
+	/////////Прайс труба бесшовкая/////////////
 
 $page = $variables['full:page'];
 $objects = $this->macros('catalog', 'getObjectsList', array(null, 'truba-besshovnaya', null, null, 2));
@@ -3266,7 +3283,7 @@ foreach ($objects as $key=>$value){
 	// echo $name.' - '.$price[$name].'<br>';
 	// var_dump($price);
    
-  if($_POST){
+  if($_POST['price'.$b]){
 		$base[$name]['price'] = $_POST['price'.$b]; 
 		$base[$name]['nacenka'] = $_POST['nacenka'.$b]; 
 		$base[$name]['nacenka_metr'] = $_POST['nacenka_metr'.$b];
@@ -3277,11 +3294,11 @@ foreach ($objects as $key=>$value){
 	$nacenka_metr = json_decode($json1);
 	echo $name;
 	echo "<input type='text' name='price".$b."' value='".$price[$name]."'>наценка на тонну<input type='text' name='nacenka".$b."'value='".$base[$name]['nacenka']."'>наценка на метр<input type='text' name='nacenka_metr".$b."'value='".$base[$name]['nacenka_metr']."'><br>";
-	if($_POST){
+	if($_POST['price'.$b]){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -3388,7 +3405,7 @@ foreach ($objects as $key=>$value){
 			
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
-			 $cena_metra = round(($price[$name]*$page->getValue('ves_metra')+$base[$name]['nacenka_metr'])*0.001);
+			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
 			 $page->setValue('cena_za_list', $cena_metra);
 
 		
@@ -3403,7 +3420,7 @@ foreach ($objects as $key=>$value){
 If($_POST){echo "<h3>Сохранено</h3>";}
 
 echo	'<hr></div>';
-echo "<input type='submit'></form>";
+echo "</form>";
 
 // ?>
 <style>
@@ -3412,5 +3429,19 @@ echo "<input type='submit'></form>";
     }
     body :target{
     	display: block;
+    }
+    .menu{
+    	display: flex;
+
+    position: fixed;
+
+    right: 0;
+
+    flex-direction: column;
+
+    top: 0;
+    overflow-y: scroll;
+    height: 100vh;
+
     }
 </style> 

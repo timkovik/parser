@@ -3406,7 +3406,7 @@ foreach ($objects as $key=>$value){
 			 $page->setValue('cena_za_tonnu', $base[$name]['price'] += $base[$name]['nacenka']);
 			 
 			 $cena_metra = round($base[$name]['price']*$page->getValue('ves_metra')*0.001)+$base[$name]['nacenka_metr'];
-			 $page->setValue('cena_za_list', $cena_metra);
+			 $page->setValue('cena_za_metr2', $cena_metra);
 
 		
 
@@ -3417,7 +3417,8 @@ foreach ($objects as $key=>$value){
 	$m++;
 	
 }
-If($_POST){echo "<h3>Сохранено</h3>";}
+If($_POST){echo "<h3>Сохранено</h3>";
+}
 
 echo	'<hr></div>';
 echo "</form>";
